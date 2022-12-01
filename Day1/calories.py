@@ -1,3 +1,6 @@
+# https://adventofcode.com/2022/day/1
+# https://adventofcode.com/2022/day/1/input
+
 file = open("input", "r")
 max = 0
 summa = 0
