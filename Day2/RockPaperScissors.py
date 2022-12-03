@@ -11,7 +11,10 @@ score = 0
 points = {
     'X': 1,
     'Y': 2,
-    'Z': 3
+    'Z': 3,
+    'A': 1,
+    'B': 2,
+    'C': 3
 }
 
 for line in file:
@@ -25,4 +28,46 @@ for line in file:
 
 print(score)
 if (score == 14163):
+    print('PASSED!')
+
+
+# -----------------------
+# Part 2
+# X -> lose, Y ->  draw, and Z -> win.
+
+file.seek(0)
+score = 0
+win_points = {
+    'X': 0,
+    'Y': 3, 
+    'Z': 6
+}
+
+win_hand = {
+    'A': 2, # if oponent has rock, paper is to win
+    'B': 3, # scissors
+    'C': 1  # rock
+}
+
+lose_hand = {
+    'A': 3, #scissor
+    'B': 1, #rock
+    'C': 2  #paper
+}
+
+for line in file:
+    oponent, instruction = line.strip().split(' ')
+    score += win_points[instruction]
+
+    if instruction == 'Y': # draw
+        score += points[oponent]
+    elif instruction == 'X': # lose
+        score += lose_hand[oponent]
+    else: # win
+        score += win_hand[oponent]
+
+
+print(score)
+
+if (score == 12091):
     print('PASSED!')
