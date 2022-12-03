@@ -24,6 +24,7 @@ def solvePart2(inputFilename):
         for line in file:
             commonItem = ''.join( set(line.strip()) & set(next(file).strip()) & set(next(file).strip()) )
             sumOfPriorities += getPriority(commonItem)
+
     return sumOfPriorities
 
 print("Part 1 answer: " + str(solvePart1("input")))
