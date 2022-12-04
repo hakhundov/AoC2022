@@ -1,73 +1,36 @@
 # AoC 2022 - Day 2 - Rock Paper Scissors
-# 1 Rock     A  X
-# 2 Paper    B  Y
-# 3 Scissors C  Z
-# 0 lost
-# 3 draw
-# 6 win
 
-file = open("input", "r")
-score = 0
+# easier to do modular arithmetic, hence -1 all points. doing a + 1 when collecting points
 points = {
-    'X': 1,
-    'Y': 2,
-    'Z': 3,
-    'A': 1,
-    'B': 2,
-    'C': 3
+    'X': 0,  # rock
+    'Y': 1,  # paper
+    'Z': 2,  # scissors
+    'A': 0,
+    'B': 1,
+    'C': 2
 }
 
-for line in file:
-    oponent, me = line.strip().split(' ')
-    score += points[me]
-
-    if (oponent == (me.replace('X', 'A').replace('Y', 'B').replace('Z', 'C'))):
-        score += 3
-    elif ((me == 'X' and oponent == 'C') or (me == 'Y' and oponent == 'A') or (me == 'Z' and oponent == 'B')):
-        score += 6
-
-print(score)
-if (score == 14163):
-    print('PASSED!')
-
-
-# -----------------------
-# Part 2
-# X -> lose, Y ->  draw, and Z -> win.
-
-file.seek(0)
-score = 0
-win_points = {
-    'X': 0,
-    'Y': 3, 
-    'Z': 6
+winPoints = {
+    0: 3,
+    1: 0,
+    2: 6
 }
 
-win_hand = {
-    'A': 2, # if oponent has rock, paper is to win
-    'B': 3, # scissors
-    'C': 1  # rock
-}
 
-lose_hand = {
-    'A': 3, #scissor
-    'B': 1, #rock
-    'C': 2  #paper
-}
+def solveDay2(inputFilename):
+    scorePartOne = 0
+    scorePartTwo = 0
+    with open(inputFilename, "r") as file:
+        for count, line in enumerate(file):
+            oponent, me = line.strip().split(' ')
+            scorePartOne += winPoints[(points[oponent] - points[me]) % 3] + int(points[me]) + 1
+            match me:
+                case 'X':  # lose
+                    scorePartTwo += (points[oponent]-1) % 3
+                case 'Y':  # draw
+                    scorePartTwo += 3 + (points[oponent]) % 3
+                case 'Z':  # win
+                    scorePartTwo += 6 + (points[oponent] + 1) % 3
+            scorePartTwo += 1
 
-for line in file:
-    oponent, instruction = line.strip().split(' ')
-    score += win_points[instruction]
-
-    if instruction == 'Y': # draw
-        score += points[oponent]
-    elif instruction == 'X': # lose
-        score += lose_hand[oponent]
-    else: # win
-        score += win_hand[oponent]
-
-
-print(score)
-
-if (score == 12091):
-    print('PASSED!')
+    return [scorePartOne, scorePartTwo]
