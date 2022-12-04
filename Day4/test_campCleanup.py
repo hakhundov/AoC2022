@@ -5,5 +5,5 @@ def test_partOne():
     assert solvePart1("input") == 509
 
 def test_partTwo():
-    assert solvePart1("testInput") == 4
-    # assert solvePart1("input") == 509
+    assert solvePart2("testInput") == 4
+    # assert solvePart1("input") ==
