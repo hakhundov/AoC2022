@@ -18,11 +18,11 @@ for count, line in enumerate(data):
 
 totalStacks = re.findall(r"\d+(?!\d+)", data[count-1])[-1]
 print(totalStacks)
-allStacks = [[] for i in range(int(totalStacks))]   
+allStacks = [[] for i in range(int(totalStacks))]
 
-for x in range(count-2, -1, -1): #upside down stack
+for x in range(count-2, -1, -1):  # upside down stack
     cursor = 1
-    for stack in range(int(totalStacks)): # counting from 0
+    for stack in range(int(totalStacks)):  # counting from 0
         try:
             item = data[x][cursor]
             if item != ' ':
@@ -37,7 +37,7 @@ for line in range(count+1, len(data), 1):
     # part 1
     # for _ in range(matches[0]):
     #     allStacks[matches[2]-1].append(allStacks[matches[1]-1].pop()) # indexing starts at 0, hence -1
-    
+
     # part 2 - no rearrangements - can pick up multiple cargos
     intermidiate = []
     for _ in range(matches[0]):
