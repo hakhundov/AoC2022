@@ -45,5 +45,6 @@ for line in range(count+1, len(data), 1):
     for _ in range(matches[0]):
         allStacks[matches[2]-1].append(intermidiate.pop())
 
+
 for x in range(len(allStacks)):
     print(allStacks[x][-1], end="")
