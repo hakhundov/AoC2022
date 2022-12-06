@@ -59,6 +59,12 @@ def getTopOfStacks(allStacks):
 
 # main
 
-initState, count = loadInitialState(data)
-allStacks = CrateMover9000(data, initState, count)
-print(getTopOfStacks(allStacks))
+def solvePart1(data):
+    initState, count = loadInitialState(data)
+    allStacks = CrateMover9000(data, initState, count)
+    return getTopOfStacks(allStacks)
+
+def solvePart2(data):
+    initState, count = loadInitialState(data)
+    allStacks = CrateMover9001(data, initState, count)
+    return getTopOfStacks(allStacks)
