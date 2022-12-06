@@ -16,4 +16,4 @@ with open("testInput", "r") as file:
 # print(data)
 # def test_():
 #     assert solveDay4P1("testInput") == "MCD"
-#     assert solveDay4P1("input") == ""
+#     assert solveDay4P1("input") == "HRFTQVWNN"
