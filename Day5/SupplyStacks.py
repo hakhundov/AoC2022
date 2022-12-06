@@ -18,8 +18,7 @@ def loadInitialState(data):
             break
 
     totalStacks = re.findall(r"\d+(?!\d+)", data[count-1])[-1]
-    # print(totalStacks)
-    allStacks = [[] for i in range(int(totalStacks))]
+    initState = [[] for i in range(int(totalStacks))]
 
     for x in range(count-2, -1, -1):  # upside down stack
         cursor = 1
@@ -27,22 +26,24 @@ def loadInitialState(data):
             try:
                 item = data[x][cursor]
                 if item != ' ':
-                    allStacks[stack].append(item)
+                    initState[stack].append(item)
                 cursor += 4
             except IndexError:
                 break
-    return allStacks, count
+    return initState, count
 
-allStacks, count = loadInitialState(data)
-
+# part 1
 def CrateMover9000(data, allStacks, count):
     for line in range(count+1, len(data), 1):
         matches = [int(n) for n in re.findall(r"-?\d+", data[line])]
-        # part 1
-        # for _ in range(matches[0]):
-        #     allStacks[matches[2]-1].append(allStacks[matches[1]-1].pop()) # indexing starts at 0, hence -1
+        for _ in range(matches[0]):
+            allStacks[matches[2]-1].append(allStacks[matches[1]-1].pop()) # indexing starts at 0, hence -1
+    return(allStacks)
 
-        # part 2 - no rearrangements - can pick up multiple cargos
+# part 2 - no rearrangements - can pick up multiple cargos
+def CrateMover9001(data, allStacks, count):
+    for line in range(count+1, len(data), 1):
+        matches = [int(n) for n in re.findall(r"-?\d+", data[line])]
         intermidiate = []
         for _ in range(matches[0]):
             intermidiate.append(allStacks[matches[1]-1].pop())
@@ -50,10 +51,14 @@ def CrateMover9000(data, allStacks, count):
             allStacks[matches[2]-1].append(intermidiate.pop())
     return(allStacks)
 
-allStacks = CrateMover9000(data, allStacks, count)
-
-def printTop(allStacks):
+def getTopOfStacks(allStacks):
+    output = ""
     for x in range(len(allStacks)):
-        print(allStacks[x][-1], end="")
+        output += allStacks[x][-1]
+    return output
 
-printTop(allStacks)
+# main
+
+initState, count = loadInitialState(data)
+allStacks = CrateMover9000(data, initState, count)
+print(getTopOfStacks(allStacks))
