@@ -1,5 +1,7 @@
-from spaceOnDevice import data, solve
+from spaceOnDevice import solve
+from aocd import get_data
 
+data = get_data(day=7, year=2022).splitlines()
 
 testData = []
 with open("testInput", "r") as file:

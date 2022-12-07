@@ -1,13 +1,5 @@
 # AoC 2022 - Day 7 - https://adventofcode.com/2022/day/7
 
-from aocd import get_data
-
-data = get_data(day=7, year=2022).splitlines()
-
-# data = []
-# with open("testInput", "r") as file:
-#     for line in file:
-#         data.append(''.join(line.splitlines()))
 
 
 def solve(data):
@@ -61,6 +53,3 @@ def solve(data):
     spaceToFree = [i for i in dirSizes if i > stillRequired][0]
     # print(spaceToFree)
     return [totalSum, spaceToFree]
-
-
-print(solve(data))
