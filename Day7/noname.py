@@ -13,47 +13,46 @@ totalSum = 0
 stack = []
 stack.append(0)
 currentSize = 0
-
-collect = []
+dirSizes = []
 
 for line in data:
     tokens = line.strip().split(' ')
-    print(tokens)
     match tokens[0]:
         case '$':
             match tokens[1]:
                 case 'cd':
-                    if (tokens[2] == '..'):
+                    if (tokens[2] == '..'): # up directory
                         stack[-1] += currentSize
-                        print('Stack just before popping! -->' , stack)
                         currentSize = 0
                         if (size := stack.pop()) <= 100000:
-                            print ('inside if statment, size = ', size)
                             totalSum += size
-                            collect.append(size)
+                        dirSizes.append(size) # added for part 2
                         stack[-1] += size # parent also inherits size
-                        #do things with stack, size and current max
-                    else: #this means we are entering a new dir
-                        print('entering a new dir ' + tokens [2])
+                    else: # down directory
                         stack[-1] += currentSize
                         currentSize = 0
                         stack.append(0)
                 case 'ls':
-                    pass #safely ignore this block
+                    pass
         case 'dir':
-            pass #safely ignore this block
-
-        case _: #let's calculate the size!
+            pass
+        case _:
             currentSize += int(tokens[0])
 
-    # print('Current state')
-    print('Stack = ' ,stack)
-    print('Current size = ', currentSize)
-    print('total sum =', totalSum)
-    print('collect --> ', collect)
-    print(' ')
+    # print('Stack = ' ,stack)
+    # print('Current size = ', currentSize)
+    # print('total sum =', totalSum)
+    # print('dirSizes = ', dirSizes)
+    # print(' ')
+
+#part 1 answer
 print(totalSum)
 
-# print(data)
+totalSize = sum(stack) + currentSize
+unusedSpace = 70000000 - totalSize
+stillRequired =  30000000 - unusedSpace
+dirSizes.sort()
+#part 2 answer
+print ([ i for i in dirSizes if i > stillRequired ][0])
 
 
