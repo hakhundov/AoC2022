@@ -16,7 +16,6 @@ currentSize = 0
 
 collect = []
 
-# with open("testInput", "r") as file:
 for line in data:
     tokens = line.strip().split(' ')
     print(tokens)
@@ -39,7 +38,6 @@ for line in data:
                         stack[-1] += currentSize
                         currentSize = 0
                         stack.append(0)
-                        
                 case 'ls':
                     pass #safely ignore this block
         case 'dir':
