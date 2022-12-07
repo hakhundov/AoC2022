@@ -39,6 +39,15 @@ for line in data:
         case _:
             currentSize += int(tokens[0])
 
+# unwind stack
+while (len(stack) > 1):
+    stack[-1] += currentSize
+    currentSize = 0
+    if (size := stack.pop()) <= 100000:
+        totalSum += size
+    dirSizes.append(size)  # added for part 2
+    stack[-1] += size  # parent also inherits size
+
 # part 1 answer
 print(totalSum)
 
