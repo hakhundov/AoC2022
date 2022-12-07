@@ -1,7 +1,5 @@
 # AoC 2022 - Day 7 - https://adventofcode.com/2022/day/7
 
-
-
 def solve(data):
     totalSum = 0
     stack = []
@@ -42,14 +40,10 @@ def solve(data):
         dirSizes.append(size)  # added for part 2
         stack[-1] += size  # parent also inherits size
 
-    # part 1 answer
-    # print(totalSum)
-
     totalSize = sum(stack)
     unusedSpace = 70000000 - totalSize
     stillRequired = 30000000 - unusedSpace
     dirSizes.sort()
-    # part 2 answer
     spaceToFree = [i for i in dirSizes if i > stillRequired][0]
-    # print(spaceToFree)
+
     return [totalSum, spaceToFree]
