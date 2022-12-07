@@ -21,14 +21,14 @@ for line in data:
         case '$':
             match tokens[1]:
                 case 'cd':
-                    if (tokens[2] == '..'): # up directory
+                    if (tokens[2] == '..'):  # up directory
                         stack[-1] += currentSize
                         currentSize = 0
                         if (size := stack.pop()) <= 100000:
                             totalSum += size
-                        dirSizes.append(size) # added for part 2
-                        stack[-1] += size # parent also inherits size
-                    else: # down directory
+                        dirSizes.append(size)  # added for part 2
+                        stack[-1] += size  # parent also inherits size
+                    else:  # down directory
                         stack[-1] += currentSize
                         currentSize = 0
                         stack.append(0)
@@ -39,20 +39,12 @@ for line in data:
         case _:
             currentSize += int(tokens[0])
 
-    # print('Stack = ' ,stack)
-    # print('Current size = ', currentSize)
-    # print('total sum =', totalSum)
-    # print('dirSizes = ', dirSizes)
-    # print(' ')
-
-#part 1 answer
+# part 1 answer
 print(totalSum)
 
 totalSize = sum(stack) + currentSize
 unusedSpace = 70000000 - totalSize
-stillRequired =  30000000 - unusedSpace
+stillRequired = 30000000 - unusedSpace
 dirSizes.sort()
-#part 2 answer
-print ([ i for i in dirSizes if i > stillRequired ][0])
-
-
+# part 2 answer
+print([i for i in dirSizes if i > stillRequired][0])
