@@ -1,7 +1,5 @@
-from noname import solve
-from aocd import get_data
+from treetop import solve, data
 
-data = get_data(day=8, year=2022).splitlines()
 
 testData = []
 with open("testInput", "r") as file:
@@ -10,8 +8,8 @@ with open("testInput", "r") as file:
 
 
 def test_solveTestData():
-    assert solve(testData) == []
+    assert solve(testData) == 21
 
 
 def test_solveRealData():
-    assert solve(data) == []
+    assert solve(data) == 1835
