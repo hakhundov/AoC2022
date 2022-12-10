@@ -101,26 +101,29 @@ for line in data:
             case 'D':
                 HLoc[1] -= 1
                 if not touching(HLoc, TLoc):
-                    if sameColumn(HLoc, TLoc):
-                        TLoc[1] -= 1
-                    else:
-                        mvDiag(HLoc, TLoc)
+                    mvTail(HLoc, TLoc)
+                    # if sameColumn(HLoc, TLoc):
+                    #     TLoc[1] -= 1
+                    # else:
+                    #     mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'R':
                 HLoc[0] += 1
                 if not touching(HLoc, TLoc):
-                    if sameRow(HLoc, TLoc):
-                        TLoc[0] += 1
-                    else:
-                        mvDiag(HLoc, TLoc)
+                    mvTail(HLoc, TLoc)
+                    # if sameRow(HLoc, TLoc):
+                    #     TLoc[0] += 1
+                    # else:
+                    #     mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'L':
                 HLoc[0] -= 1
                 if not touching(HLoc, TLoc):
-                    if sameRow(HLoc, TLoc):
-                        TLoc[0] -= 1
-                    else:
-                        mvDiag(HLoc, TLoc)
+                    mvTail(HLoc, TLoc)
+                    # if sameRow(HLoc, TLoc):
+                    #     TLoc[0] -= 1
+                    # else:
+                    #     mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
 
 print(len(set(Tvisited)))
