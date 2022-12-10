@@ -83,8 +83,13 @@ def mvLateral(head, tail):
         return False # did not mv lateral
 
 def mvTail(head, tail):
-        if not mvLateral(head, tail):
-            mvDiag(head, tail)
+    if not mvLateral(head, tail):
+        mvDiag(head, tail)
+
+def followHead(head, tail):
+    if not isTouching(head, tail):
+        mvTail(head, tail)
+    return tail    
 
 for line in data:
     direction, steps = line.split(' ')
@@ -92,24 +97,29 @@ for line in data:
         match direction:
             case 'U':
                 HLoc[1] += 1
-                if not isTouching(HLoc, TLoc):
-                    mvTail(HLoc, TLoc)
-                    Tvisited.extend([tuple(TLoc)])
+                # followHead(HLoc,TLoc)
+                # if not isTouching(HLoc, TLoc):
+                #     mvTail(HLoc, TLoc)
+                Tvisited.extend([tuple(followHead(HLoc,TLoc))])
             case 'D':
                 HLoc[1] -= 1
-                if not isTouching(HLoc, TLoc):
-                    mvTail(HLoc, TLoc)
-                    Tvisited.extend([tuple(TLoc)])
+                # if not isTouching(HLoc, TLoc):
+                #     mvTail(HLoc, TLoc)
+                #     Tvisited.extend([tuple(TLoc)])
+                Tvisited.extend([tuple(followHead(HLoc,TLoc))])
             case 'R':
                 HLoc[0] += 1
-                if not isTouching(HLoc, TLoc):
-                    mvTail(HLoc, TLoc)
-                    Tvisited.extend([tuple(TLoc)])
+                # if not isTouching(HLoc, TLoc):
+                #     mvTail(HLoc, TLoc)
+                #     Tvisited.extend([tuple(TLoc)])
+                Tvisited.extend([tuple(followHead(HLoc,TLoc))])
             case 'L':
                 HLoc[0] -= 1
-                if not isTouching(HLoc, TLoc):
-                    mvTail(HLoc, TLoc)
-                    Tvisited.extend([tuple(TLoc)])
+                # if not isTouching(HLoc, TLoc):
+                #     mvTail(HLoc, TLoc)
+                #     Tvisited.extend([tuple(TLoc)])
+                Tvisited.extend([tuple(followHead(HLoc,TLoc))])
+
 
 print(len(set(Tvisited)))
 
