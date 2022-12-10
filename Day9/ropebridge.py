@@ -63,11 +63,9 @@ for line in data:
                 if not touching(HLoc, TLoc):
                     if sameColumn(HLoc, TLoc):
                         TLoc[1] += 1
-                        # Tvisited.extend([tuple(TLoc)])
                     else:
                         if HLoc[0] < TLoc[0]:
                             mvUpLeft(TLoc)
-                            # Tvisited.extend([tuple(TLoc)])
                         else:
                             mvUpRight(TLoc)
                     Tvisited.extend([tuple(TLoc)])
@@ -76,40 +74,34 @@ for line in data:
                 if not touching(HLoc, TLoc):
                     if sameColumn(HLoc, TLoc):
                         TLoc[1] -= 1
-                        Tvisited.extend([tuple(TLoc)])
                     else:
                         if HLoc[0] < TLoc[0]:
                             mvDownLeft(TLoc)
-                            Tvisited.extend([tuple(TLoc)])
                         else:
                             mvDownRight(TLoc)
-                            Tvisited.extend([tuple(TLoc)])
+                    Tvisited.extend([tuple(TLoc)])
             case 'R':
                 HLoc[0] += 1
                 if not touching(HLoc, TLoc):
                     if sameRow(HLoc, TLoc):
                         TLoc[0] += 1
-                        Tvisited.extend([tuple(TLoc)])
                     else:
                         if HLoc[1] < TLoc[1]:
                             mvDownRight(TLoc)
-                            Tvisited.extend([tuple(TLoc)])
                         else:
                             mvUpRight(TLoc)
-                            Tvisited.extend([tuple(TLoc)])
+                    Tvisited.extend([tuple(TLoc)])
             case 'L':
                 HLoc[0] -= 1
                 if not touching(HLoc, TLoc):
                     if sameRow(HLoc, TLoc):
                         TLoc[0] -= 1
-                        Tvisited.extend([tuple(TLoc)])
                     else:
                         if HLoc[1] < TLoc[1]:
                             mvDownLeft(TLoc)
-                            Tvisited.extend([tuple(TLoc)])
                         else:
                             mvUpLeft(TLoc)
-                            Tvisited.extend([tuple(TLoc)])
+                    Tvisited.extend([tuple(TLoc)])
 
 print(len(set(Tvisited)))
 
