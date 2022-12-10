@@ -12,8 +12,9 @@ data = get_data(day=9, year=2022).splitlines()
 
 Tvisited = []
 Tvisited.extend([tuple([0, 0])])
-TLoc = [0, 0]
+
 HLoc = [0, 0]
+TLoc = [0, 0]
 
 
 def isTouching(TLoc, HLoc):
@@ -99,19 +100,22 @@ def followHead(head, tail):
     return tail
 
 
+def mvHead(direction, head):
+    match direction:
+        case 'U':
+            head[1] += 1
+        case 'D':
+            head[1] -= 1
+        case 'R':
+            head[0] += 1
+        case 'L':
+            head[0] -= 1
+
+
 for line in data:
     direction, steps = line.split(' ')
-    for step in range(int(steps)):
-        match direction:
-            case 'U':
-                HLoc[1] += 1
-            case 'D':
-                HLoc[1] -= 1
-            case 'R':
-                HLoc[0] += 1
-            case 'L':
-                HLoc[0] -= 1
-
+    for _ in range(int(steps)):
+        mvHead(direction, HLoc)
         Tvisited.extend([tuple(followHead(HLoc, TLoc))])
 
 print(len(set(Tvisited)))
