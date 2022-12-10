@@ -63,14 +63,14 @@ for line in data:
                 if not touching(HLoc, TLoc):
                     if sameColumn(HLoc, TLoc):
                         TLoc[1] += 1
-                        Tvisited.extend([tuple(TLoc)])
+                        # Tvisited.extend([tuple(TLoc)])
                     else:
                         if HLoc[0] < TLoc[0]:
                             mvUpLeft(TLoc)
-                            Tvisited.extend([tuple(TLoc)])
+                            # Tvisited.extend([tuple(TLoc)])
                         else:
                             mvUpRight(TLoc)
-                            Tvisited.extend([tuple(TLoc)])
+                    Tvisited.extend([tuple(TLoc)])
             case 'D':
                 HLoc[1] -= 1
                 if not touching(HLoc, TLoc):
