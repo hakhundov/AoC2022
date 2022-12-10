@@ -11,9 +11,10 @@ data = get_data(day=9, year=2022).splitlines()
 # print(data)
 
 Tvisited = []
-Tvisited.extend([tuple([0,0])])
+Tvisited.extend([tuple([0, 0])])
 TLoc = [0, 0]
 HLoc = [0, 0]
+
 
 def isTouching(TLoc, HLoc):
     XDelta = abs(TLoc[0] - HLoc[0])
@@ -26,11 +27,13 @@ def isTouching(TLoc, HLoc):
     else:
         return False
 
+
 def isSameRow(TLoc, HLoc):
     if (TLoc[1] == HLoc[1]):
         return True
     else:
         return False
+
 
 def isSameColumn(TLoc, HLoc):
     if (TLoc[0] == HLoc[0]):
@@ -38,21 +41,26 @@ def isSameColumn(TLoc, HLoc):
     else:
         return False
 
+
 def mvUpRight(knot):
     knot[0] += 1
     knot[1] += 1
+
 
 def mvUpLeft(knot):
     knot[0] -= 1
     knot[1] += 1
 
+
 def mvDownRight(knot):
     knot[0] += 1
     knot[1] -= 1
 
+
 def mvDownLeft(knot):
     knot[0] -= 1
     knot[1] -= 1
+
 
 def mvDiag(head, tail):
     if head[0] < tail[0]:
@@ -65,6 +73,7 @@ def mvDiag(head, tail):
             mvDownRight(tail)
         else:
             mvUpRight(tail)
+
 
 def mvLateral(head, tail):
     if isSameColumn(head, tail):
@@ -80,13 +89,15 @@ def mvLateral(head, tail):
             tail[0] -= 1
         return True
     else:
-        return False # did not mv lateral
+        return False  # did not mv lateral
+
 
 def followHead(head, tail):
     if not isTouching(head, tail):
         if not mvLateral(head, tail):
             mvDiag(head, tail)
-    return tail    
+    return tail
+
 
 for line in data:
     direction, steps = line.split(' ')
@@ -94,17 +105,13 @@ for line in data:
         match direction:
             case 'U':
                 HLoc[1] += 1
-                Tvisited.extend([tuple(followHead(HLoc,TLoc))])
             case 'D':
                 HLoc[1] -= 1
-                Tvisited.extend([tuple(followHead(HLoc,TLoc))])
             case 'R':
                 HLoc[0] += 1
-                Tvisited.extend([tuple(followHead(HLoc,TLoc))])
             case 'L':
                 HLoc[0] -= 1
-                Tvisited.extend([tuple(followHead(HLoc,TLoc))])
 
+        Tvisited.extend([tuple(followHead(HLoc, TLoc))])
 
 print(len(set(Tvisited)))
-
