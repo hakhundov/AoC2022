@@ -66,10 +66,27 @@ def mvDiag(head, tail):
         else:
             mvUpRight(tail)
 
-def mvTail(head, tail):
-        if sameColumn(head, tail):
+def mvLateral(head, tail):
+    if sameColumn(head, tail):
+        if head[1] > tail[1]:
             tail[1] += 1
         else:
+            tail[1] -= 1
+        return True
+    elif sameRow(head, tail):
+        if head[0] > tail[0]:
+            tail[0] += 1
+        else:
+            tail[0] -= 1
+        return True
+    else:
+        return False # did not mv lateral
+
+def mvTail(head, tail):
+        # if sameColumn(head, tail):
+        #     tail[1] += 1
+        # else:
+        if not mvLateral(head, tail):
             mvDiag(head, tail)
 
 for line in data:
@@ -80,13 +97,6 @@ for line in data:
                 HLoc[1] += 1
                 if not touching(HLoc, TLoc):
                     mvTail(HLoc, TLoc)
-                    # if sameColumn(HLoc, TLoc):
-                    #     TLoc[1] += 1
-                    # else:
-                    #     if HLoc[0] < TLoc[0]:
-                    #         mvUpLeft(TLoc)
-                    #     else:
-                    #         mvUpRight(TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'D':
                 HLoc[1] -= 1
@@ -94,10 +104,6 @@ for line in data:
                     if sameColumn(HLoc, TLoc):
                         TLoc[1] -= 1
                     else:
-                        # if HLoc[0] < TLoc[0]:
-                        #     mvDownLeft(TLoc)
-                        # else:
-                        #     mvDownRight(TLoc)
                         mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'R':
@@ -106,10 +112,6 @@ for line in data:
                     if sameRow(HLoc, TLoc):
                         TLoc[0] += 1
                     else:
-                        # if HLoc[1] < TLoc[1]:
-                        #     mvDownRight(TLoc)
-                        # else:
-                        #     mvUpRight(TLoc)
                         mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'L':
@@ -118,10 +120,6 @@ for line in data:
                     if sameRow(HLoc, TLoc):
                         TLoc[0] -= 1
                     else:
-                        # if HLoc[1] < TLoc[1]:
-                        #     mvDownLeft(TLoc)
-                        # else:
-                        #     mvUpLeft(TLoc)
                         mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
 
