@@ -1,4 +1,4 @@
-from ropebridge import isTouching, isSameRow, isSameColumn
+from ropebridge import isTouching, isSameRow, isSameColumn, solve, data
 
 def test_touchingTrue():
     assert isTouching([1, 1], [1, 1]) == True
@@ -23,13 +23,13 @@ def test_sameColumn():
     assert isSameColumn([1, 1], [0, 1]) == False
     assert isSameColumn([1, 1], [1, 4]) == True
 
-# testData = []
-# with open("testInput", "r") as file:
-#     for line in file:
-#         testData.append(''.join(line.splitlines()))
+testData = []
+file = open("testInput", "r")
+for line in file:
+    testData.append(line.strip())
 
-# def test_part1TestInput():
-#     assert solvePart1(testData) ==  13
+def test_solveTestInput(test):
+    assert solve(testData) == [13, 36]
 
-# def test_part1TestInput():
-#     assert solvePart1(testData) ==  6037
+def test_solveRealInput():
+    assert solve(data) == [6037, 2485]

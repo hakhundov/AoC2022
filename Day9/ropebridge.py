@@ -1,25 +1,10 @@
 # AoC 2022 - Day 9 - https://adventofcode.com/2022/day/9
 
 from aocd import get_data
-data = get_data(day=9, year=2022).splitlines()
 
-# data = []
-# file = open("testInput", "r")
-# for line in file:
-#     data.append(line.strip())
-
-# print(data)
-
-Tvisited = []
-Tvisited.extend([tuple([0, 0])])
-
-HLoc = [0, 0]
-TLoc = [0, 0]
-
-
-def isTouching(TLoc, HLoc):
-    XDelta = abs(TLoc[0] - HLoc[0])
-    YDelta = abs(TLoc[1] - HLoc[1])
+def isTouching(tail, head):
+    XDelta = abs(tail[0] - head[0])
+    YDelta = abs(tail[1] - head[1])
     delta = (XDelta + YDelta)
     if delta == 0 or delta == 1:
         return True
@@ -29,15 +14,15 @@ def isTouching(TLoc, HLoc):
         return False
 
 
-def isSameRow(TLoc, HLoc):
-    if (TLoc[1] == HLoc[1]):
+def isSameRow(tail, head):
+    if (tail[1] == head[1]):
         return True
     else:
         return False
 
 
-def isSameColumn(TLoc, HLoc):
-    if (TLoc[0] == HLoc[0]):
+def isSameColumn(tail, head):
+    if (tail[0] == head[0]):
         return True
     else:
         return False
@@ -90,7 +75,7 @@ def mvLateral(head, tail):
             tail[0] -= 1
         return True
     else:
-        return False  # did not mv lateral
+        return False  # did not move laterally
 
 
 def followHead(head, tail):
@@ -112,10 +97,39 @@ def mvHead(direction, head):
             head[0] -= 1
 
 
+# initialize variables
+
+testData = []
+file = open("testInput", "r")
+for line in file:
+    testData.append(line.strip())
+
+data = get_data(day=9, year=2022).splitlines()
+
+HEAD = [0, 0]
+
+tail = []
+for i in range(9):
+    tail.append([0, 0])
+
+visited1 = []
+visited1.extend([tuple([0, 0])])
+
+visited9 = []
+visited9.extend([tuple([0, 0])])
+
+# def solve(data):
 for line in data:
     direction, steps = line.split(' ')
     for _ in range(int(steps)):
-        mvHead(direction, HLoc)
-        Tvisited.extend([tuple(followHead(HLoc, TLoc))])
+        mvHead(direction, HEAD)
+        visited1.extend([tuple(followHead(HEAD, tail[0]))])
+        for i in range(0, 8, 1):
+            followHead(tail[i], tail[i+1])
+        visited9.extend([tuple(followHead(tail[7], tail[8]))])
 
-print(len(set(Tvisited)))
+print(len(set(visited1)), len(set(visited9)))
+
+# return[len(set(visited1)), len(set(visited9))]
+# print(solve(testData))
+# print(solve(data))
