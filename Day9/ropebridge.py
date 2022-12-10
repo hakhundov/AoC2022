@@ -82,10 +82,6 @@ def mvLateral(head, tail):
     else:
         return False # did not mv lateral
 
-# def mvTail(head, tail):
-#     if not mvLateral(head, tail):
-#         mvDiag(head, tail)
-
 def followHead(head, tail):
     if not isTouching(head, tail):
         if not mvLateral(head, tail):
@@ -98,27 +94,15 @@ for line in data:
         match direction:
             case 'U':
                 HLoc[1] += 1
-                # followHead(HLoc,TLoc)
-                # if not isTouching(HLoc, TLoc):
-                #     mvTail(HLoc, TLoc)
                 Tvisited.extend([tuple(followHead(HLoc,TLoc))])
             case 'D':
                 HLoc[1] -= 1
-                # if not isTouching(HLoc, TLoc):
-                #     mvTail(HLoc, TLoc)
-                #     Tvisited.extend([tuple(TLoc)])
                 Tvisited.extend([tuple(followHead(HLoc,TLoc))])
             case 'R':
                 HLoc[0] += 1
-                # if not isTouching(HLoc, TLoc):
-                #     mvTail(HLoc, TLoc)
-                #     Tvisited.extend([tuple(TLoc)])
                 Tvisited.extend([tuple(followHead(HLoc,TLoc))])
             case 'L':
                 HLoc[0] -= 1
-                # if not isTouching(HLoc, TLoc):
-                #     mvTail(HLoc, TLoc)
-                #     Tvisited.extend([tuple(TLoc)])
                 Tvisited.extend([tuple(followHead(HLoc,TLoc))])
 
 
