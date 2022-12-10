@@ -38,6 +38,22 @@ def sameColumn(TLoc, HLoc):
     else:
         return False
 
+def mvUpRight(knot):
+    knot[0] += 1
+    knot[1] += 1
+
+def mvUpLeft(knot):
+    knot[0] -= 1
+    knot[1] += 1
+
+def mvDownRight(knot):
+    knot[0] += 1
+    knot[1] -= 1
+
+def mvDownLeft(knot):
+    knot[0] -= 1
+    knot[1] -= 1
+
 for line in data:
     direction, steps = line.split(' ')
     for step in range(int(steps)):
@@ -50,12 +66,10 @@ for line in data:
                         Tvisited.extend([tuple(TLoc)])
                     else:
                         if HLoc[0] < TLoc[0]:
-                            TLoc[0] -= 1
-                            TLoc[1] += 1
+                            mvUpLeft(TLoc)
                             Tvisited.extend([tuple(TLoc)])
                         else:
-                            TLoc[0] += 1
-                            TLoc[1] += 1
+                            mvUpRight(TLoc)
                             Tvisited.extend([tuple(TLoc)])
             case 'D':
                 HLoc[1] -= 1
@@ -65,12 +79,10 @@ for line in data:
                         Tvisited.extend([tuple(TLoc)])
                     else:
                         if HLoc[0] < TLoc[0]:
-                            TLoc[0] -= 1
-                            TLoc[1] -= 1
+                            mvDownLeft(TLoc)
                             Tvisited.extend([tuple(TLoc)])
                         else:
-                            TLoc[0] += 1
-                            TLoc[1] -= 1
+                            mvDownRight(TLoc)
                             Tvisited.extend([tuple(TLoc)])
             case 'R':
                 HLoc[0] += 1
@@ -80,12 +92,10 @@ for line in data:
                         Tvisited.extend([tuple(TLoc)])
                     else:
                         if HLoc[1] < TLoc[1]:
-                            TLoc[0] += 1
-                            TLoc[1] -= 1
+                            mvDownRight(TLoc)
                             Tvisited.extend([tuple(TLoc)])
                         else:
-                            TLoc[0] += 1
-                            TLoc[1] += 1
+                            mvUpRight(TLoc)
                             Tvisited.extend([tuple(TLoc)])
             case 'L':
                 HLoc[0] -= 1
@@ -95,12 +105,10 @@ for line in data:
                         Tvisited.extend([tuple(TLoc)])
                     else:
                         if HLoc[1] < TLoc[1]:
-                            TLoc[0] -= 1
-                            TLoc[1] -= 1
+                            mvDownLeft(TLoc)
                             Tvisited.extend([tuple(TLoc)])
                         else:
-                            TLoc[0] -= 1
-                            TLoc[1] += 1
+                            mvUpLeft(TLoc)
                             Tvisited.extend([tuple(TLoc)])
 
 print(len(set(Tvisited)))
