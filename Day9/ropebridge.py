@@ -82,13 +82,14 @@ def mvLateral(head, tail):
     else:
         return False # did not mv lateral
 
-def mvTail(head, tail):
-    if not mvLateral(head, tail):
-        mvDiag(head, tail)
+# def mvTail(head, tail):
+#     if not mvLateral(head, tail):
+#         mvDiag(head, tail)
 
 def followHead(head, tail):
     if not isTouching(head, tail):
-        mvTail(head, tail)
+        if not mvLateral(head, tail):
+            mvDiag(head, tail)
     return tail    
 
 for line in data:
