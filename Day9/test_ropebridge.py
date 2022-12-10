@@ -1,27 +1,27 @@
-from ropebridge import touching, sameRow, sameColumn
+from ropebridge import isTouching, isSameRow, isSameColumn
 
 def test_touchingTrue():
-    assert touching([1, 1], [1, 1]) == True
-    assert touching([1, 1], [0, 1]) == True
-    assert touching([1, 1], [1, 0]) == True
-    assert touching([1, 1], [0, 0]) == True
-    assert touching([0, 0], [-1, -1]) == True
+    assert isTouching([1, 1], [1, 1]) == True
+    assert isTouching([1, 1], [0, 1]) == True
+    assert isTouching([1, 1], [1, 0]) == True
+    assert isTouching([1, 1], [0, 0]) == True
+    assert isTouching([0, 0], [-1, -1]) == True
 
 
 def test_touchingFalse():
-    assert touching([1, 1], [3, 1]) == False
-    assert touching([1, 1], [-1, 1]) == False
-    assert touching([1, 1], [1, -1]) == False
-    assert touching([1, 1], [3, 1]) == False
+    assert isTouching([1, 1], [3, 1]) == False
+    assert isTouching([1, 1], [-1, 1]) == False
+    assert isTouching([1, 1], [1, -1]) == False
+    assert isTouching([1, 1], [3, 1]) == False
 
 
 def test_sameRow():
-    assert sameRow([1, 1], [1, 0]) == False
-    assert sameRow([1, 1], [2, 1]) == True
+    assert isSameRow([1, 1], [1, 0]) == False
+    assert isSameRow([1, 1], [2, 1]) == True
 
 def test_sameColumn():
-    assert sameColumn([1, 1], [0, 1]) == False
-    assert sameColumn([1, 1], [1, 4]) == True
+    assert isSameColumn([1, 1], [0, 1]) == False
+    assert isSameColumn([1, 1], [1, 4]) == True
 
 # testData = []
 # with open("testInput", "r") as file:

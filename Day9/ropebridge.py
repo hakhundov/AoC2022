@@ -15,7 +15,7 @@ Tvisited.extend([tuple([0,0])])
 TLoc = [0, 0]
 HLoc = [0, 0]
 
-def touching(TLoc, HLoc):
+def isTouching(TLoc, HLoc):
     XDelta = abs(TLoc[0] - HLoc[0])
     YDelta = abs(TLoc[1] - HLoc[1])
     delta = (XDelta + YDelta)
@@ -26,13 +26,13 @@ def touching(TLoc, HLoc):
     else:
         return False
 
-def sameRow(TLoc, HLoc):
+def isSameRow(TLoc, HLoc):
     if (TLoc[1] == HLoc[1]):
         return True
     else:
         return False
 
-def sameColumn(TLoc, HLoc):
+def isSameColumn(TLoc, HLoc):
     if (TLoc[0] == HLoc[0]):
         return True
     else:
@@ -67,13 +67,13 @@ def mvDiag(head, tail):
             mvUpRight(tail)
 
 def mvLateral(head, tail):
-    if sameColumn(head, tail):
+    if isSameColumn(head, tail):
         if head[1] > tail[1]:
             tail[1] += 1
         else:
             tail[1] -= 1
         return True
-    elif sameRow(head, tail):
+    elif isSameRow(head, tail):
         if head[0] > tail[0]:
             tail[0] += 1
         else:
@@ -92,22 +92,22 @@ for line in data:
         match direction:
             case 'U':
                 HLoc[1] += 1
-                if not touching(HLoc, TLoc):
+                if not isTouching(HLoc, TLoc):
                     mvTail(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'D':
                 HLoc[1] -= 1
-                if not touching(HLoc, TLoc):
+                if not isTouching(HLoc, TLoc):
                     mvTail(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'R':
                 HLoc[0] += 1
-                if not touching(HLoc, TLoc):
+                if not isTouching(HLoc, TLoc):
                     mvTail(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'L':
                 HLoc[0] -= 1
-                if not touching(HLoc, TLoc):
+                if not isTouching(HLoc, TLoc):
                     mvTail(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
 
