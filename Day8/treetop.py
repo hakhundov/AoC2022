@@ -1,4 +1,4 @@
-# AoC 2022 - Day 8 - https://adventofcode.com/2022/day/7
+# AoC 2022 - Day 8 - https://adventofcode.com/2022/day/8
 
 from aocd import get_data
 data = get_data(day=8, year=2022).splitlines()
