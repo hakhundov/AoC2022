@@ -83,9 +83,6 @@ def mvLateral(head, tail):
         return False # did not mv lateral
 
 def mvTail(head, tail):
-        # if sameColumn(head, tail):
-        #     tail[1] += 1
-        # else:
         if not mvLateral(head, tail):
             mvDiag(head, tail)
 
@@ -102,28 +99,16 @@ for line in data:
                 HLoc[1] -= 1
                 if not touching(HLoc, TLoc):
                     mvTail(HLoc, TLoc)
-                    # if sameColumn(HLoc, TLoc):
-                    #     TLoc[1] -= 1
-                    # else:
-                    #     mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'R':
                 HLoc[0] += 1
                 if not touching(HLoc, TLoc):
                     mvTail(HLoc, TLoc)
-                    # if sameRow(HLoc, TLoc):
-                    #     TLoc[0] += 1
-                    # else:
-                    #     mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'L':
                 HLoc[0] -= 1
                 if not touching(HLoc, TLoc):
                     mvTail(HLoc, TLoc)
-                    # if sameRow(HLoc, TLoc):
-                    #     TLoc[0] -= 1
-                    # else:
-                    #     mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
 
 print(len(set(Tvisited)))
