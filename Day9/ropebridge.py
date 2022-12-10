@@ -54,6 +54,24 @@ def mvDownLeft(knot):
     knot[0] -= 1
     knot[1] -= 1
 
+def mvDiag(head, tail):
+    if head[0] < tail[0]:
+        if head[1] < tail[1]:
+            mvDownLeft(tail)
+        else:
+            mvUpLeft(tail)
+    else:
+        if head[1] < tail[1]:
+            mvDownRight(tail)
+        else:
+            mvUpRight(tail)
+
+def mvTail(head, tail):
+        if sameColumn(head, tail):
+            tail[1] += 1
+        else:
+            mvDiag(head, tail)
+
 for line in data:
     direction, steps = line.split(' ')
     for step in range(int(steps)):
@@ -61,13 +79,14 @@ for line in data:
             case 'U':
                 HLoc[1] += 1
                 if not touching(HLoc, TLoc):
-                    if sameColumn(HLoc, TLoc):
-                        TLoc[1] += 1
-                    else:
-                        if HLoc[0] < TLoc[0]:
-                            mvUpLeft(TLoc)
-                        else:
-                            mvUpRight(TLoc)
+                    mvTail(HLoc, TLoc)
+                    # if sameColumn(HLoc, TLoc):
+                    #     TLoc[1] += 1
+                    # else:
+                    #     if HLoc[0] < TLoc[0]:
+                    #         mvUpLeft(TLoc)
+                    #     else:
+                    #         mvUpRight(TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'D':
                 HLoc[1] -= 1
@@ -75,10 +94,11 @@ for line in data:
                     if sameColumn(HLoc, TLoc):
                         TLoc[1] -= 1
                     else:
-                        if HLoc[0] < TLoc[0]:
-                            mvDownLeft(TLoc)
-                        else:
-                            mvDownRight(TLoc)
+                        # if HLoc[0] < TLoc[0]:
+                        #     mvDownLeft(TLoc)
+                        # else:
+                        #     mvDownRight(TLoc)
+                        mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'R':
                 HLoc[0] += 1
@@ -86,10 +106,11 @@ for line in data:
                     if sameRow(HLoc, TLoc):
                         TLoc[0] += 1
                     else:
-                        if HLoc[1] < TLoc[1]:
-                            mvDownRight(TLoc)
-                        else:
-                            mvUpRight(TLoc)
+                        # if HLoc[1] < TLoc[1]:
+                        #     mvDownRight(TLoc)
+                        # else:
+                        #     mvUpRight(TLoc)
+                        mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
             case 'L':
                 HLoc[0] -= 1
@@ -97,10 +118,11 @@ for line in data:
                     if sameRow(HLoc, TLoc):
                         TLoc[0] -= 1
                     else:
-                        if HLoc[1] < TLoc[1]:
-                            mvDownLeft(TLoc)
-                        else:
-                            mvUpLeft(TLoc)
+                        # if HLoc[1] < TLoc[1]:
+                        #     mvDownLeft(TLoc)
+                        # else:
+                        #     mvUpLeft(TLoc)
+                        mvDiag(HLoc, TLoc)
                     Tvisited.extend([tuple(TLoc)])
 
 print(len(set(Tvisited)))
