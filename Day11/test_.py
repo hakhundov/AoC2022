@@ -1,20 +1,20 @@
-# from cpu import solve, solve2,data
+from monkey import data, testData, playKeepAway
 
 
-testData = []
-with open("testInput", "r") as file:
-    for line in file:
-        testData.append(''.join(line.splitlines()))
+def test_playKeepAwayPart1():
+    rounds = 20
+    decreaseWorryLevel = True
+    assert playKeepAway(testData, rounds, decreaseWorryLevel) == 10605
 
+    rounds = 20
+    decreaseWorryLevel = True
+    assert playKeepAway(data, rounds, decreaseWorryLevel) == 54752
 
+def test_playKeepAwayPart2():
+    rounds = 10000
+    decreaseWorryLevel = False
+    assert playKeepAway(testData, rounds, decreaseWorryLevel) == 2713310158
 
-# def test_solveTestData():
-#     assert solve(testData) == 21
-
-
-# Part 1
-# Test 10605
-# Real 54752
-
-# Part 2
-# Test 2713310158
+    rounds = 10000
+    decreaseWorryLevel = False
+    assert playKeepAway(data, rounds, decreaseWorryLevel) == 13606755504

@@ -9,8 +9,6 @@ testData = []
 with open("testInput", "r") as file:
     for line in file:
         testData.append(line.strip())  # unpack
-print(testData)
-
 
 class Monkey(object):
     inspected = 0
@@ -34,7 +32,6 @@ def getMonkeys(input):
         divisor = [int(n) for n in re.findall(r"-?\d+", next(dataIter))][0]
         passToTrue = [int(n) for n in re.findall(r"-?\d+", next(dataIter))][0]
         passToFalse = [int(n) for n in re.findall(r"-?\d+", next(dataIter))][0]
-        # print(items, operation, test, passToTrue, passToFalse)
         monkeys.append(Monkey(items, operation, divisor, passToTrue, passToFalse))
         try:
             next(dataIter)  # skip line
@@ -42,36 +39,31 @@ def getMonkeys(input):
             break
     return monkeys
 
-
 # solve
 
-rounds = 10000
-monkeys = getMonkeys(data)
-decreaseWorryLevel = False
+def playKeepAway(data, rounds, decreaseWorryLevel):
+    monkeys = getMonkeys(data)
+    lcm = math.lcm(*[monkey.divisor for monkey in monkeys])
 
-lcm = math.lcm(*[monkey.divisor for monkey in monkeys])
+    for _ in range(rounds):
+        for monkey in monkeys:
+            for item in monkey.items:
+                monkey.inspected += 1
+                worry_level = (monkey.operation(item))
+                worry_level = worry_level // 3 if decreaseWorryLevel else (worry_level % lcm)
+                if (worry_level % monkey.divisor == 0):
+                    monkeys[monkey.passToTrue].items.append(worry_level)
+                else:
+                    monkeys[monkey.passToFalse].items.append(worry_level)
+            monkey.items.clear()
 
-print(lcm)
-
-for round in range(rounds):
-    for monkey in monkeys:
-        operation = monkey.operation
-        for item in monkey.items:
-            monkey.inspected += 1
-            worry_level = (monkey.operation(item))
-            worry_level = worry_level // 3 if decreaseWorryLevel else (worry_level % lcm)
-            if (worry_level % monkey.divisor == 0):
-                monkeys[monkey.passToTrue].items.append(worry_level)
-            else:
-                monkeys[monkey.passToFalse].items.append(worry_level)
-        monkey.items.clear()
-
-    # for i, monkey in enumerate(monkeys):
-    #     print("Monkey ", i, " ", monkey.items)
+    inspected = [monkey.inspected for monkey in monkeys]
+    inspected.sort()
+    monkeyBusiness = inspected[-1] * inspected[-2]
+    return monkeyBusiness
 
 
-inspected = [monkey.inspected for monkey in monkeys]
-inspected.sort()
-print(inspected)
-monkeyBusiness = inspected[-1] * inspected[-2]
-print(monkeyBusiness)
+# rounds = 10000
+# decreaseWorryLevel = False
+# monkeyBusiness = playKeepAway(data, rounds, decreaseWorryLevel)
+# print(monkeyBusiness)
