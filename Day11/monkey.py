@@ -55,13 +55,13 @@ def playKeepAway(data, rounds, decreaseWorryLevel):
         for monkey in monkeys:
             for item in monkey.items:
                 monkey.inspected += 1
-                worry_level = (monkey.operation(item))
-                worry_level = worry_level // 3 if decreaseWorryLevel else (
-                    worry_level % lcm)
-                if (worry_level % monkey.divisor == 0):
-                    monkeys[monkey.passToTrue].addItem(worry_level)
+                worryLevel = (monkey.operation(item))
+                worryLevel = worryLevel // 3 if decreaseWorryLevel else (
+                    worryLevel % lcm)
+                if (worryLevel % monkey.divisor == 0):
+                    monkeys[monkey.passToTrue].addItem(worryLevel)
                 else:
-                    monkeys[monkey.passToFalse].addItem(worry_level)
+                    monkeys[monkey.passToFalse].addItem(worryLevel)
             monkey.items.clear()
 
     inspected = [monkey.inspected for monkey in monkeys]
