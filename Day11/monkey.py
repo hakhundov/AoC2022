@@ -10,6 +10,7 @@ with open("testInput", "r") as file:
     for line in file:
         testData.append(line.strip())  # unpack
 
+
 class Monkey(object):
     inspected = 0
 
@@ -19,6 +20,9 @@ class Monkey(object):
         self.divisor = div
         self.passToTrue = passToTrue
         self.passToFalse = passToFalse
+
+    def addItem(self, item):
+        self.items.append(item)
 
 
 def readMonkeyData(input):
@@ -32,7 +36,8 @@ def readMonkeyData(input):
         divisor = int(next(dataIter).split(' ')[-1])
         passToTrue = int(next(dataIter).split(' ')[-1])
         passToFalse = int(next(dataIter).split(' ')[-1])
-        monkeys.append(Monkey(items, operation, divisor, passToTrue, passToFalse))
+        monkeys.append(
+            Monkey(items, operation, divisor, passToTrue, passToFalse))
         try:
             next(dataIter)  # skip line
         except StopIteration:
@@ -40,6 +45,7 @@ def readMonkeyData(input):
     return monkeys
 
 # solve
+
 
 def playKeepAway(data, rounds, decreaseWorryLevel):
     monkeys = readMonkeyData(data)
@@ -50,11 +56,12 @@ def playKeepAway(data, rounds, decreaseWorryLevel):
             for item in monkey.items:
                 monkey.inspected += 1
                 worry_level = (monkey.operation(item))
-                worry_level = worry_level // 3 if decreaseWorryLevel else (worry_level % lcm)
+                worry_level = worry_level // 3 if decreaseWorryLevel else (
+                    worry_level % lcm)
                 if (worry_level % monkey.divisor == 0):
-                    monkeys[monkey.passToTrue].items.append(worry_level)
+                    monkeys[monkey.passToTrue].addItem(worry_level)
                 else:
-                    monkeys[monkey.passToFalse].items.append(worry_level)
+                    monkeys[monkey.passToFalse].addItem(worry_level)
             monkey.items.clear()
 
     inspected = [monkey.inspected for monkey in monkeys]
