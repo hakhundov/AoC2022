@@ -21,7 +21,7 @@ class Monkey(object):
         self.passToFalse = passToFalse
 
 
-def getMonkeys(input):
+def readMonkeyData(input):
     dataIter = iter(input)
 
     monkeys = []
@@ -42,7 +42,7 @@ def getMonkeys(input):
 # solve
 
 def playKeepAway(data, rounds, decreaseWorryLevel):
-    monkeys = getMonkeys(data)
+    monkeys = readMonkeyData(data)
     lcm = math.lcm(*[monkey.divisor for monkey in monkeys])
 
     for _ in range(rounds):
