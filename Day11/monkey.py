@@ -45,9 +45,13 @@ def getMonkeys(input):
 
 # solve
 
-rounds = 20
-monkeys = getMonkeys(testData)
-decreaseWorryLevel = True
+rounds = 10000
+monkeys = getMonkeys(data)
+decreaseWorryLevel = False
+
+lcm = math.lcm(*[monkey.divisor for monkey in monkeys])
+
+print(lcm)
 
 for round in range(rounds):
     for monkey in monkeys:
@@ -55,7 +59,7 @@ for round in range(rounds):
         for item in monkey.items:
             monkey.inspected += 1
             worry_level = (monkey.operation(item))
-            worry_level = worry_level // 3 if decreaseWorryLevel else worry_level
+            worry_level = worry_level // 3 if decreaseWorryLevel else (worry_level % lcm)
             if (worry_level % monkey.divisor == 0):
                 monkeys[monkey.passToTrue].items.append(worry_level)
             else:
