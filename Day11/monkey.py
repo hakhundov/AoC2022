@@ -2,17 +2,18 @@
 
 from aocd import get_data
 import re
-data = get_data(day=11, year=2022).splitlines()
-# print(data)
 
+data = get_data(day=11, year=2022).splitlines()
 testData = []
-with open("testInput","r") as file:
+with open("testInput", "r") as file:
     for line in file:
         testData.append(line.strip())  # unpack
 print(testData)
 
+
 class Monkey(object):
     inspected = 0
+
     def __init__(self, items, operation, test, passToTrue, passToFalse):
         self.items = items
         self.operation = eval("lambda old: " + operation)
@@ -21,9 +22,9 @@ class Monkey(object):
         self.passToFalse = passToFalse
 
 
-def getMonkeys( input ):
+def getMonkeys(input):
     dataIter = iter(input)
-    
+
     monkeys = []
     for line in dataIter:
         # skip 'Monkey 0'
@@ -35,10 +36,11 @@ def getMonkeys( input ):
         # print(items, operation, test, passToTrue, passToFalse)
         monkeys.append(Monkey(items, operation, test, passToTrue, passToFalse))
         try:
-            next(dataIter) # skip line
+            next(dataIter)  # skip line
         except StopIteration:
             break
     return monkeys
+
 
 monkeys = getMonkeys(data)
 
@@ -53,7 +55,7 @@ for round in range(20):
             else:
                 monkeys[monkey.passToFalse].items.append(worry_level)
         monkey.items.clear()
-    
+
     for i, monkey in enumerate(monkeys):
         print("Monkey ", i, " ", monkey.items)
 
@@ -62,8 +64,3 @@ inspected = [monkey.inspected for monkey in monkeys]
 inspected.sort()
 monkeyBusiness = inspected[-1] * inspected[-2]
 print(monkeyBusiness)
-
-# print (monkeys[0].items)
-# load all monkeys
-# monkeys.append(Monkey([79, 98], "old * 19", 23, 2, 3))
-# print(monkeys[0].operation(2))
