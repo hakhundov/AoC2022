@@ -28,10 +28,10 @@ def getMonkeys(input):
     for line in dataIter:
         # skip 'Monkey 0'
         items = [int(n) for n in re.findall(r"-?\d+", next(dataIter))]
-        operation = (re.findall(r"\=(.*)", next(dataIter)))[0].strip()
-        divisor = [int(n) for n in re.findall(r"-?\d+", next(dataIter))][0]
-        passToTrue = [int(n) for n in re.findall(r"-?\d+", next(dataIter))][0]
-        passToFalse = [int(n) for n in re.findall(r"-?\d+", next(dataIter))][0]
+        operation = next(dataIter).split('=')[-1]
+        divisor = int(next(dataIter).split(' ')[-1])
+        passToTrue = int(next(dataIter).split(' ')[-1])
+        passToFalse = int(next(dataIter).split(' ')[-1])
         monkeys.append(Monkey(items, operation, divisor, passToTrue, passToFalse))
         try:
             next(dataIter)  # skip line
