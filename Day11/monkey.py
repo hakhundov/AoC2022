@@ -2,6 +2,7 @@
 
 from aocd import get_data
 import re
+import math
 
 data = get_data(day=11, year=2022).splitlines()
 testData = []
@@ -14,10 +15,10 @@ print(testData)
 class Monkey(object):
     inspected = 0
 
-    def __init__(self, items, operation, test, passToTrue, passToFalse):
+    def __init__(self, items, operation, div, passToTrue, passToFalse):
         self.items = items
         self.operation = eval("lambda old: " + operation)
-        self.test = test
+        self.divisor = div
         self.passToTrue = passToTrue
         self.passToFalse = passToFalse
 
@@ -30,11 +31,11 @@ def getMonkeys(input):
         # skip 'Monkey 0'
         items = [int(n) for n in re.findall(r"-?\d+", next(dataIter))]
         operation = (re.findall(r"\=(.*)", next(dataIter)))[0].strip()
-        test = [int(n) for n in re.findall(r"-?\d+", next(dataIter))][0]
+        divisor = [int(n) for n in re.findall(r"-?\d+", next(dataIter))][0]
         passToTrue = [int(n) for n in re.findall(r"-?\d+", next(dataIter))][0]
         passToFalse = [int(n) for n in re.findall(r"-?\d+", next(dataIter))][0]
         # print(items, operation, test, passToTrue, passToFalse)
-        monkeys.append(Monkey(items, operation, test, passToTrue, passToFalse))
+        monkeys.append(Monkey(items, operation, divisor, passToTrue, passToFalse))
         try:
             next(dataIter)  # skip line
         except StopIteration:
@@ -42,25 +43,31 @@ def getMonkeys(input):
     return monkeys
 
 
-monkeys = getMonkeys(data)
+# solve
 
-for round in range(20):
+rounds = 20
+monkeys = getMonkeys(testData)
+decreaseWorryLevel = True
+
+for round in range(rounds):
     for monkey in monkeys:
         operation = monkey.operation
         for item in monkey.items:
             monkey.inspected += 1
-            worry_level = (monkey.operation(item)) // 3
-            if (worry_level % monkey.test == 0):
+            worry_level = (monkey.operation(item))
+            worry_level = worry_level // 3 if decreaseWorryLevel else worry_level
+            if (worry_level % monkey.divisor == 0):
                 monkeys[monkey.passToTrue].items.append(worry_level)
             else:
                 monkeys[monkey.passToFalse].items.append(worry_level)
         monkey.items.clear()
 
-    for i, monkey in enumerate(monkeys):
-        print("Monkey ", i, " ", monkey.items)
+    # for i, monkey in enumerate(monkeys):
+    #     print("Monkey ", i, " ", monkey.items)
 
 
 inspected = [monkey.inspected for monkey in monkeys]
 inspected.sort()
+print(inspected)
 monkeyBusiness = inspected[-1] * inspected[-2]
 print(monkeyBusiness)

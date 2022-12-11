@@ -15,3 +15,6 @@ with open("testInput", "r") as file:
 # Part 1
 # Test 10605
 # Real 54752
+
+# Part 2
+# Test 2713310158
