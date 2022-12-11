@@ -40,7 +40,7 @@ def getMonkeys( input ):
             break
     return monkeys
 
-monkeys = getMonkeys(testData)
+monkeys = getMonkeys(data)
 
 for round in range(20):
     for monkey in monkeys:
@@ -58,8 +58,11 @@ for round in range(20):
         print("Monkey ", i, " ", monkey.items)
 
 
-inspected = [monkey.inspected for monkey in monkeys].sort()
-print(inspected)
+inspected = [monkey.inspected for monkey in monkeys]
+inspected.sort()
+monkeyBusiness = inspected[-1] * inspected[-2]
+print(monkeyBusiness)
+
 # print (monkeys[0].items)
 # load all monkeys
 # monkeys.append(Monkey([79, 98], "old * 19", 23, 2, 3))

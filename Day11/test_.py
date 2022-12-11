@@ -10,3 +10,8 @@ with open("testInput", "r") as file:
 
 # def test_solveTestData():
 #     assert solve(testData) == 21
+
+
+# Part 1
+# Test 10605
+# Real 54752
