@@ -14,6 +14,7 @@ dict = {}
 register_x = 1
 cycle = 0
 stack = []
+CRT_output =""
 
 for line in data:
     instuction = line.strip()
@@ -23,17 +24,37 @@ for line in data:
             cycle += 1
             if (len(stack) != 0):
                 register_x += stack.pop()
+
+            if ((cycle-1) % 40 in range(register_x-1, register_x+2, 1)):
+                CRT_output += "#"
+            else:
+                CRT_output += "."
+
+
             dict[cycle] = register_x
         case _:
             addx_v = int(line.split(' ')[1])
+
             cycle += 1
             if (len(stack) != 0):
                 register_x += stack.pop()
             dict[cycle] = register_x
+
+            if ((cycle-1) % 40 in range(register_x-1, register_x+2, 1)):
+                CRT_output += "#"
+            else:
+                CRT_output += "."
+
             cycle += 1
             if (len(stack) != 0):
                 register_x += stack.pop()
             dict[cycle] = register_x
+
+            if ((cycle-1) % 40 in range(register_x-1, register_x+2, 1)):
+                CRT_output += "#"
+            else:
+                CRT_output += "."
+
             stack.append(addx_v)
 
 sum = 0
@@ -41,8 +62,7 @@ for i in range(20, 241, 40):
     sum += i * dict[i]
 print(sum)
 
-# part 1
-# test  = 13140
-# real = 13520
-
-
+for index, char in enumerate(CRT_output):
+    print(char, end='')
+    if ((index+1) % 40 == 0):
+        print('')
