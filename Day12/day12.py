@@ -5,15 +5,15 @@ import re
 import math
 import queue
 
-# data = get_data(day=12, year=2022).splitlines()
-data = []
-with open("testInput", "r") as file:
-    for line in file:
-        data.append(line.strip())  # unpack
+data = get_data(day=12, year=2022).splitlines()
+# data = []
+# with open("testInput", "r") as file:
+#     for line in file:
+#         data.append(line.strip())  # unpack
 
 row_len = len(data)
 col_len = len(data[0])
-print(row_len, col_len)
+# print(row_len, col_len)
 
 def canMove(fr, to):
     if fr == 'S':
@@ -47,27 +47,40 @@ def findStart(data):
         if (j := data[i].find('S')) != -1:
             return (i, j)
 
+def findEnd(data):
+    for i in range(len(data)):
+        if (j := data[i].find('E')) != -1:
+            return (i, j)
+
 
 start = findStart(data)
-print(start)
+# print(start)
+
+end = findEnd(data)
+#replace E with z
+data[end[0]] = data[end[0]].replace('E', 'z')
+# print(data)
 
 frontier = queue.Queue()
-# reached = []
 frontier.put(start)
-# reached.append(start)
 came_from = dict()
 came_from[start] = None
 
-# count = 0
 while not frontier.empty():
     current = frontier.get()
-    # count += 1
-    for next in getNeighbors(current[0], current[1]):
+    for next in getNeighbors(data, current[0], current[1], row_len, col_len): # i dont like
         if next not in came_from:
             frontier.put(next)
             came_from[next] = current
-            # reached.append(next)
-# implement early exit
+# TODO: implement early exit
 
-
-print(came_from)
+# construct path
+current = end
+path = []
+while current != start: 
+   path.append(current)
+   current = came_from[current]
+# path.append(start) # optional
+# path.reverse() # optional
+# print(path)
+print(len(path))
