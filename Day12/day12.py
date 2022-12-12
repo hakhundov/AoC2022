@@ -44,6 +44,13 @@ def findStart(data):
         if (j := data[i].find('S')) != -1:
             return (i, j)
 
+def findAll_a(data):
+    all_a = []
+    for i in range(len(data)):
+        if (j := data[i].find('a')) != -1:
+            all_a.append((i, j))
+    return all_a
+
 def findEnd(data):
     for i in range(len(data)):
         if (j := data[i].find('E')) != -1:
@@ -80,5 +87,8 @@ def getShortestPathLength(data, start, end):
 start = findStart(data)
 end = findEnd(data)
 data[end[0]] = data[end[0]].replace('E', 'z')
+data[start[0]] = data[start[0]].replace('S', 'a')
+
+print(findAll_a(data))
 
 print(getShortestPathLength(data, start, end))
