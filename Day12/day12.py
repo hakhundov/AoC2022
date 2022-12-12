@@ -11,9 +11,6 @@ data = get_data(day=12, year=2022).splitlines()
 #     for line in file:
 #         data.append(line.strip())  # unpack
 
-row_len = len(data)
-col_len = len(data[0])
-# print(row_len, col_len)
 
 def canMove(fr, to):
     if fr == 'S':
@@ -53,34 +50,35 @@ def findEnd(data):
             return (i, j)
 
 
+
+def getShortestPathLength(data, start, end):
+    row_len = len(data)
+    col_len = len(data[0])
+    frontier = queue.Queue()
+    frontier.put(start)
+    came_from = dict()
+    came_from[start] = None
+
+    while not frontier.empty():
+        current = frontier.get()
+        for next in getNeighbors(data, current[0], current[1], row_len, col_len): # i dont like
+            if next not in came_from:
+                frontier.put(next)
+                came_from[next] = current
+    # TODO: implement early exit
+    # construct path
+    current = end
+    path = []
+    while current != start: 
+       path.append(current)
+       current = came_from[current]
+    # path.append(start) # optional
+    # path.reverse() # optional
+    # print(path)
+    return len(path)
+
 start = findStart(data)
-# print(start)
-
 end = findEnd(data)
-#replace E with z
 data[end[0]] = data[end[0]].replace('E', 'z')
-# print(data)
 
-frontier = queue.Queue()
-frontier.put(start)
-came_from = dict()
-came_from[start] = None
-
-while not frontier.empty():
-    current = frontier.get()
-    for next in getNeighbors(data, current[0], current[1], row_len, col_len): # i dont like
-        if next not in came_from:
-            frontier.put(next)
-            came_from[next] = current
-# TODO: implement early exit
-
-# construct path
-current = end
-path = []
-while current != start: 
-   path.append(current)
-   current = came_from[current]
-# path.append(start) # optional
-# path.reverse() # optional
-# print(path)
-print(len(path))
+print(getShortestPathLength(data, start, end))
