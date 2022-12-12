@@ -5,38 +5,42 @@ import re
 import math
 import queue
 
-data = get_data(day=12, year=2022).splitlines()
-testData = []
+# data = get_data(day=12, year=2022).splitlines()
+data = []
 with open("testInput", "r") as file:
     for line in file:
-        testData.append(line.strip())  # unpack
+        data.append(line.strip())  # unpack
 
 row_len = len(data)
 col_len = len(data[0])
 print(row_len, col_len)
 
 def canMove(fr, to):
-    if (ord(to) - ord(fr)) > 1:
+    if fr == 'S':
+        return True
+    elif (ord(to) - ord(fr)) > 1:
         return False
     else:
         return True
 
 
-def getNeighbors(row, col, row_len, col_len):
-    neighbors = []
+def getNeighbors(data, row, col, row_len, col_len):
+    allNeighbors = []
     if row > 0:
         above = (row-1, col)
-        neighbors.append(above)
+        allNeighbors.append(above)
     if row < row_len - 1:
         below = (row+1, col)
-        neighbors.append(below)
+        allNeighbors.append(below)
     if col > 0:
         left = (row, col-1)
-        neighbors.append(left)
+        allNeighbors.append(left)
     if col < col_len - 1:
         right = (row, col+1)
-        neighbors.append(right)
-    return neighbors
+        allNeighbors.append(right)
+    
+    filtered = [n for n in allNeighbors if canMove(data[row][col], data[n[0]][n[1]])]
+    return filtered
 
 def findStart(data):
     for i in range(len(data)):
