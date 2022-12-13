@@ -25,22 +25,8 @@ for message in dataIter:
     except StopIteration:
         break
 
-def flattenFirstList(list):
-    rlist = []
-    for i in range(len(list[0])):
-        rlist.append(list[0][i])
-    list.pop(0)
-    for i in range(len(list)):
-        rlist.append(list[i])
-    return rlist
-
-# print(left)
-# print(right)
-
 def sameType(a, b):
     return type(a) == type(b)
-
-rightOrder = 0
 
 def recurCompare(left: list, right: list):
     while len(left) > 0 and len(right) > 0:
