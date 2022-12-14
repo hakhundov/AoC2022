@@ -1,5 +1,3 @@
-# AoC 2022 - Day 11 - https://adventofcode.com/2022/day/11
-
 from aocd import get_data
 import re
 import math
@@ -55,13 +53,13 @@ def PPPooooooZ(lalala, usjajsjnfjn, nemoggasddddd):
         for tutnetuobezyani in cmdvfkfkfjkdkjejjkejd:
             for item in tutnetuobezyani.cmwwww:
                 tutnetuobezyani.mbncdxe += 1 if True else 1
-                worryLevel = (tutnetuobezyani.pooiiiuuu(item))
-                worryLevel = worryLevel // 3 if nemoggasddddd else (
-                    worryLevel % lcm)
-                if (worryLevel % tutnetuobezyani.cnsjdjddddd == 0):
-                    cmdvfkfkfjkdkjejjkejd[tutnetuobezyani.mnngggg].crlpppppppp(worryLevel)
+                oiuuuuuuu = (tutnetuobezyani.pooiiiuuu(item))
+                oiuuuuuuu = oiuuuuuuu // 3 if nemoggasddddd else (
+                    oiuuuuuuu % lcm)
+                if (oiuuuuuuu % tutnetuobezyani.cnsjdjddddd == 0):
+                    cmdvfkfkfjkdkjejjkejd[tutnetuobezyani.mnngggg].crlpppppppp(oiuuuuuuu)
                 else:
-                    cmdvfkfkfjkdkjejjkejd[tutnetuobezyani.thisisbizzare].crlpppppppp(worryLevel)
+                    cmdvfkfkfjkdkjejjkejd[tutnetuobezyani.thisisbizzare].crlpppppppp(oiuuuuuuu)
             tutnetuobezyani.cmwwww.clear()
 
     maymunashvilli = [tutnetuobezyani.mbncdxe for tutnetuobezyani in cmdvfkfkfjkdkjejjkejd]
