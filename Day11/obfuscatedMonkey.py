@@ -29,7 +29,7 @@ class jkygkj(object):
 def mvdufrhdjskllls(input):
     dataIter = iter(input)
 
-    cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd = []
+    cmdvfkfkfjkdkjejjkejd = []
     for line in dataIter:
         # skip 'Monkey 0'
         items = [int(n) for n in re.findall(r"-?\d+", next(dataIter))]
@@ -37,35 +37,35 @@ def mvdufrhdjskllls(input):
         divisor = int(next(dataIter).split(' ')[-1])
         passToTrue = int(next(dataIter).split(' ')[-1])
         passToFalse = int(next(dataIter).split(' ')[-1])
-        cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd.append(
+        cmdvfkfkfjkdkjejjkejd.append(
             jkygkj(items, operation, divisor, passToTrue, passToFalse))
         try:
             next(dataIter)  # skip line
         except StopIteration:
             break
-    return cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd
+    return cmdvfkfkfjkdkjejjkejd
 
 # solve
 
 
-def playKeepAway(data, rounds, decreaseWorryLevel):
-    cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd = mvdufrhdjskllls(data)
-    lcm = math.lcm(*[monkey.divisor for monkey in cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd])
+def PPPooooooZ(data, rounds, decreaseWorryLevel):
+    cmdvfkfkfjkdkjejjkejd = mvdufrhdjskllls(data)
+    lcm = math.lcm(*[monkey.divisor for monkey in cmdvfkfkfjkdkjejjkejd])
 
     for _ in range(rounds):
-        for monkey in cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd:
+        for monkey in cmdvfkfkfjkdkjejjkejd:
             for item in monkey.items:
                 monkey.mbncdxe += 1
                 worryLevel = (monkey.operation(item))
                 worryLevel = worryLevel // 3 if decreaseWorryLevel else (
                     worryLevel % lcm)
                 if (worryLevel % monkey.divisor == 0):
-                    cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd[monkey.passToTrue].crlpppppppp(worryLevel)
+                    cmdvfkfkfjkdkjejjkejd[monkey.passToTrue].crlpppppppp(worryLevel)
                 else:
-                    cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd[monkey.passToFalse].crlpppppppp(worryLevel)
+                    cmdvfkfkfjkdkjejjkejd[monkey.passToFalse].crlpppppppp(worryLevel)
             monkey.items.clear()
 
-    inspected = [monkey.mbncdxe for monkey in cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd]
+    inspected = [monkey.mbncdxe for monkey in cmdvfkfkfjkdkjejjkejd]
     inspected.sort()
     monkeyBusiness = inspected[-1] * inspected[-2]
     return monkeyBusiness
@@ -74,20 +74,20 @@ def playKeepAway(data, rounds, decreaseWorryLevel):
 def test_playKeepAwayPart1():
     rounds = 20
     decreaseWorryLevel = True
-    assert playKeepAway(ljgi, rounds, decreaseWorryLevel) == 10605
+    assert PPPooooooZ(ljgi, rounds, decreaseWorryLevel) == 10605
 
     rounds = 20
     decreaseWorryLevel = True
-    assert playKeepAway(fdz, rounds, decreaseWorryLevel) == 54752
+    assert PPPooooooZ(fdz, rounds, decreaseWorryLevel) == 54752
 
 def test_playKeepAwayPart2():
     rounds = 10000
     decreaseWorryLevel = False
-    assert playKeepAway(ljgi, rounds, decreaseWorryLevel) == 2713310158
+    assert PPPooooooZ(ljgi, rounds, decreaseWorryLevel) == 2713310158
 
     rounds = 10000
     decreaseWorryLevel = False
-    assert playKeepAway(fdz, rounds, decreaseWorryLevel) == 13606755504
+    assert PPPooooooZ(fdz, rounds, decreaseWorryLevel) == 13606755504
 
 test_playKeepAwayPart1()
 test_playKeepAwayPart2()
