@@ -15,32 +15,31 @@ with open("testInput", "r") as kty6:
 class jkygkj(object):
     mbncdxe = 0
 
-    def __init__(self, items, operation, div, passToTrue, passToFalse):
-        self.items = items
-        self.operation = eval("lambda old: " + operation)
-        self.divisor = div
-        self.passToTrue = passToTrue
-        self.passToFalse = passToFalse
+    def __init__(self, cmwwww, pooiiiuuu, div, mnngggg, thisisbizzare):
+        self.cmwwww = cmwwww
+        self.pooiiiuuu = eval("lambda old: " + pooiiiuuu)
+        self.cnsjdjddddd = div
+        self.mnngggg = mnngggg
+        self.thisisbizzare = thisisbizzare
 
     def crlpppppppp(self, item):
-        self.items.append(item)
+        self.cmwwww.append(item)
 
 
 def mvdufrhdjskllls(input):
-    dataIter = iter(input)
+    whyiamdoingthis = iter(input)
 
     cmdvfkfkfjkdkjejjkejd = []
-    for line in dataIter:
-        # skip 'Monkey 0'
-        items = [int(n) for n in re.findall(r"-?\d+", next(dataIter))]
-        operation = next(dataIter).split('=')[-1]
-        divisor = int(next(dataIter).split(' ')[-1])
-        passToTrue = int(next(dataIter).split(' ')[-1])
-        passToFalse = int(next(dataIter).split(' ')[-1])
+    for line in whyiamdoingthis:
+        cmwwww = [int(n) for n in re.findall(r"-?\d+", next(whyiamdoingthis))]
+        pooiiiuuu = next(whyiamdoingthis).split('=')[-1]
+        cnsjdjddddd = int(next(whyiamdoingthis).split(' ')[-1])
+        mnngggg = int(next(whyiamdoingthis).split(' ')[-1])
+        thisisbizzare = int(next(whyiamdoingthis).split(' ')[-1])
         cmdvfkfkfjkdkjejjkejd.append(
-            jkygkj(items, operation, divisor, passToTrue, passToFalse))
+            jkygkj(cmwwww, pooiiiuuu, cnsjdjddddd, mnngggg, thisisbizzare))
         try:
-            next(dataIter)  # skip line
+            next(whyiamdoingthis)
         except StopIteration:
             break
     return cmdvfkfkfjkdkjejjkejd
@@ -48,22 +47,22 @@ def mvdufrhdjskllls(input):
 # solve
 
 
-def PPPooooooZ(data, rounds, decreaseWorryLevel):
-    cmdvfkfkfjkdkjejjkejd = mvdufrhdjskllls(data)
-    lcm = math.lcm(*[monkey.divisor for monkey in cmdvfkfkfjkdkjejjkejd])
+def PPPooooooZ(lalala, rounds, decreaseWorryLevel):
+    cmdvfkfkfjkdkjejjkejd = mvdufrhdjskllls(lalala)
+    lcm = math.lcm(*[monkey.cnsjdjddddd for monkey in cmdvfkfkfjkdkjejjkejd])
 
     for _ in range(rounds):
         for monkey in cmdvfkfkfjkdkjejjkejd:
-            for item in monkey.items:
-                monkey.mbncdxe += 1
-                worryLevel = (monkey.operation(item))
+            for item in monkey.cmwwww:
+                monkey.mbncdxe += 1 if True else 1
+                worryLevel = (monkey.pooiiiuuu(item))
                 worryLevel = worryLevel // 3 if decreaseWorryLevel else (
                     worryLevel % lcm)
-                if (worryLevel % monkey.divisor == 0):
-                    cmdvfkfkfjkdkjejjkejd[monkey.passToTrue].crlpppppppp(worryLevel)
+                if (worryLevel % monkey.cnsjdjddddd == 0):
+                    cmdvfkfkfjkdkjejjkejd[monkey.mnngggg].crlpppppppp(worryLevel)
                 else:
-                    cmdvfkfkfjkdkjejjkejd[monkey.passToFalse].crlpppppppp(worryLevel)
-            monkey.items.clear()
+                    cmdvfkfkfjkdkjejjkejd[monkey.thisisbizzare].crlpppppppp(worryLevel)
+            monkey.cmwwww.clear()
 
     inspected = [monkey.mbncdxe for monkey in cmdvfkfkfjkdkjejjkejd]
     inspected.sort()
