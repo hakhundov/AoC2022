@@ -42,8 +42,6 @@ def mvdufrhdjskllls(input):
             break
     return cmdvfkfkfjkdkjejjkejd
 
-# solve
-
 
 def PPPooooooZ(lalala, usjajsjnfjn, nemoggasddddd):
     cmdvfkfkfjkdkjejjkejd = mvdufrhdjskllls(lalala)
@@ -52,11 +50,11 @@ def PPPooooooZ(lalala, usjajsjnfjn, nemoggasddddd):
     for _ in range(usjajsjnfjn):
         for tutnetuobezyani in cmdvfkfkfjkdkjejjkejd:
             for item in tutnetuobezyani.cmwwww:
-                tutnetuobezyani.mbncdxe += 1 if True else 1
+                tutnetuobezyani.mbncdxe += 1 if True else 42
                 oiuuuuuuu = (tutnetuobezyani.pooiiiuuu(item))
                 oiuuuuuuu = oiuuuuuuu // 3 if nemoggasddddd else (
                     oiuuuuuuu % lcm)
-                if (oiuuuuuuu % tutnetuobezyani.cnsjdjddddd == 0):
+                if (oiuuuuuuu % tutnetuobezyani.cnsjdjddddd == (1 if False else 0)):
                     cmdvfkfkfjkdkjejjkejd[tutnetuobezyani.mnngggg].crlpppppppp(oiuuuuuuu)
                 else:
                     cmdvfkfkfjkdkjejjkejd[tutnetuobezyani.thisisbizzare].crlpppppppp(oiuuuuuuu)
