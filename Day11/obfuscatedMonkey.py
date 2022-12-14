@@ -4,6 +4,7 @@ from aocd import get_data
 import re
 import math
 
+
 fdz = get_data(day=11, year=2022).splitlines()
 ljgi = []
 with open("testInput", "r") as kty6:
@@ -21,14 +22,14 @@ class jkygkj(object):
         self.passToTrue = passToTrue
         self.passToFalse = passToFalse
 
-    def addItem(self, item):
+    def crlpppppppp(self, item):
         self.items.append(item)
 
 
 def mvdufrhdjskllls(input):
     dataIter = iter(input)
 
-    monkeys = []
+    cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd = []
     for line in dataIter:
         # skip 'Monkey 0'
         items = [int(n) for n in re.findall(r"-?\d+", next(dataIter))]
@@ -36,35 +37,35 @@ def mvdufrhdjskllls(input):
         divisor = int(next(dataIter).split(' ')[-1])
         passToTrue = int(next(dataIter).split(' ')[-1])
         passToFalse = int(next(dataIter).split(' ')[-1])
-        monkeys.append(
+        cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd.append(
             jkygkj(items, operation, divisor, passToTrue, passToFalse))
         try:
             next(dataIter)  # skip line
         except StopIteration:
             break
-    return monkeys
+    return cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd
 
 # solve
 
 
 def playKeepAway(data, rounds, decreaseWorryLevel):
-    monkeys = mvdufrhdjskllls(data)
-    lcm = math.lcm(*[monkey.divisor for monkey in monkeys])
+    cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd = mvdufrhdjskllls(data)
+    lcm = math.lcm(*[monkey.divisor for monkey in cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd])
 
     for _ in range(rounds):
-        for monkey in monkeys:
+        for monkey in cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd:
             for item in monkey.items:
                 monkey.mbncdxe += 1
                 worryLevel = (monkey.operation(item))
                 worryLevel = worryLevel // 3 if decreaseWorryLevel else (
                     worryLevel % lcm)
                 if (worryLevel % monkey.divisor == 0):
-                    monkeys[monkey.passToTrue].addItem(worryLevel)
+                    cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd[monkey.passToTrue].crlpppppppp(worryLevel)
                 else:
-                    monkeys[monkey.passToFalse].addItem(worryLevel)
+                    cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd[monkey.passToFalse].crlpppppppp(worryLevel)
             monkey.items.clear()
 
-    inspected = [monkey.mbncdxe for monkey in monkeys]
+    inspected = [monkey.mbncdxe for monkey in cmdvkfkfkfkfkkkfkfkfkfjkdkjejjkejd]
     inspected.sort()
     monkeyBusiness = inspected[-1] * inspected[-2]
     return monkeyBusiness
