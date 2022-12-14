@@ -64,13 +64,13 @@ def PPPooooooZ(lalala, usjajsjnfjn, nemoggasddddd):
                     cmdvfkfkfjkdkjejjkejd[tutnetuobezyani.thisisbizzare].crlpppppppp(worryLevel)
             tutnetuobezyani.cmwwww.clear()
 
-    inspected = [tutnetuobezyani.mbncdxe for tutnetuobezyani in cmdvfkfkfjkdkjejjkejd]
-    inspected.sort()
-    nemoggasddddddd = inspected[-1] * inspected[-2]
+    maymunashvilli = [tutnetuobezyani.mbncdxe for tutnetuobezyani in cmdvfkfkfjkdkjejjkejd]
+    maymunashvilli.sort()
+    nemoggasddddddd = maymunashvilli[-1] * maymunashvilli[-2]
     return nemoggasddddddd
 
 
-def test_playKeepAwayPart1():
+def nbvcfghjk():
     usjajsjnfjn = 20
     nemoggasddddd = True
     assert PPPooooooZ(ljgi, usjajsjnfjn, nemoggasddddd) == 10605
@@ -79,7 +79,7 @@ def test_playKeepAwayPart1():
     nemoggasddddd = True
     assert PPPooooooZ(fdz, usjajsjnfjn, nemoggasddddd) == 54752
 
-def test_playKeepAwayPart2():
+def mnbvcftrtikollklk():
     usjajsjnfjn = 10000
     nemoggasddddd = False
     assert PPPooooooZ(ljgi, usjajsjnfjn, nemoggasddddd) == 2713310158
@@ -88,5 +88,5 @@ def test_playKeepAwayPart2():
     nemoggasddddd = False
     assert PPPooooooZ(fdz, usjajsjnfjn, nemoggasddddd) == 13606755504
 
-test_playKeepAwayPart1()
-test_playKeepAwayPart2()
+nbvcfghjk()
+mnbvcftrtikollklk()
