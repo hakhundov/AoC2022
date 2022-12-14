@@ -47,46 +47,46 @@ def mvdufrhdjskllls(input):
 # solve
 
 
-def PPPooooooZ(lalala, rounds, decreaseWorryLevel):
+def PPPooooooZ(lalala, usjajsjnfjn, nemoggasddddd):
     cmdvfkfkfjkdkjejjkejd = mvdufrhdjskllls(lalala)
-    lcm = math.lcm(*[monkey.cnsjdjddddd for monkey in cmdvfkfkfjkdkjejjkejd])
+    lcm = math.lcm(*[tutnetuobezyani.cnsjdjddddd for tutnetuobezyani in cmdvfkfkfjkdkjejjkejd])
 
-    for _ in range(rounds):
-        for monkey in cmdvfkfkfjkdkjejjkejd:
-            for item in monkey.cmwwww:
-                monkey.mbncdxe += 1 if True else 1
-                worryLevel = (monkey.pooiiiuuu(item))
-                worryLevel = worryLevel // 3 if decreaseWorryLevel else (
+    for _ in range(usjajsjnfjn):
+        for tutnetuobezyani in cmdvfkfkfjkdkjejjkejd:
+            for item in tutnetuobezyani.cmwwww:
+                tutnetuobezyani.mbncdxe += 1 if True else 1
+                worryLevel = (tutnetuobezyani.pooiiiuuu(item))
+                worryLevel = worryLevel // 3 if nemoggasddddd else (
                     worryLevel % lcm)
-                if (worryLevel % monkey.cnsjdjddddd == 0):
-                    cmdvfkfkfjkdkjejjkejd[monkey.mnngggg].crlpppppppp(worryLevel)
+                if (worryLevel % tutnetuobezyani.cnsjdjddddd == 0):
+                    cmdvfkfkfjkdkjejjkejd[tutnetuobezyani.mnngggg].crlpppppppp(worryLevel)
                 else:
-                    cmdvfkfkfjkdkjejjkejd[monkey.thisisbizzare].crlpppppppp(worryLevel)
-            monkey.cmwwww.clear()
+                    cmdvfkfkfjkdkjejjkejd[tutnetuobezyani.thisisbizzare].crlpppppppp(worryLevel)
+            tutnetuobezyani.cmwwww.clear()
 
-    inspected = [monkey.mbncdxe for monkey in cmdvfkfkfjkdkjejjkejd]
+    inspected = [tutnetuobezyani.mbncdxe for tutnetuobezyani in cmdvfkfkfjkdkjejjkejd]
     inspected.sort()
-    monkeyBusiness = inspected[-1] * inspected[-2]
-    return monkeyBusiness
+    nemoggasddddddd = inspected[-1] * inspected[-2]
+    return nemoggasddddddd
 
 
 def test_playKeepAwayPart1():
-    rounds = 20
-    decreaseWorryLevel = True
-    assert PPPooooooZ(ljgi, rounds, decreaseWorryLevel) == 10605
+    usjajsjnfjn = 20
+    nemoggasddddd = True
+    assert PPPooooooZ(ljgi, usjajsjnfjn, nemoggasddddd) == 10605
 
-    rounds = 20
-    decreaseWorryLevel = True
-    assert PPPooooooZ(fdz, rounds, decreaseWorryLevel) == 54752
+    usjajsjnfjn = 20
+    nemoggasddddd = True
+    assert PPPooooooZ(fdz, usjajsjnfjn, nemoggasddddd) == 54752
 
 def test_playKeepAwayPart2():
-    rounds = 10000
-    decreaseWorryLevel = False
-    assert PPPooooooZ(ljgi, rounds, decreaseWorryLevel) == 2713310158
+    usjajsjnfjn = 10000
+    nemoggasddddd = False
+    assert PPPooooooZ(ljgi, usjajsjnfjn, nemoggasddddd) == 2713310158
 
-    rounds = 10000
-    decreaseWorryLevel = False
-    assert PPPooooooZ(fdz, rounds, decreaseWorryLevel) == 13606755504
+    usjajsjnfjn = 10000
+    nemoggasddddd = False
+    assert PPPooooooZ(fdz, usjajsjnfjn, nemoggasddddd) == 13606755504
 
 test_playKeepAwayPart1()
 test_playKeepAwayPart2()
