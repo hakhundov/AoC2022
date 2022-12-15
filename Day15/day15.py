@@ -17,17 +17,19 @@ data = get_data(day=15, year=2022).splitlines()
 
 beaconNotPresent = set()
 beacons = set()
+
+sbdata = []
 for line in data:
     print(line)
     matches = [int(n) for n in re.findall(r"-?\d+", line)]
     sensor = [matches[0], matches[1]]
     beacon = [matches[2], matches[3]]
     beacons.add((matches[2], matches[3]))
-
     d = manhattan(sensor, beacon)
-    # print(d)
+    sbdata.append[sensor, beacon, d]
     for x, y in ringscan(matches[0], matches[1], 0, d, metric=manhattan):
         beaconNotPresent.add((x,y))
+print(sbdata)
 
 beaconNotPresent -= beacons
 count = 0
