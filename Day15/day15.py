@@ -8,54 +8,42 @@ import re
 
 data = get_data(day=15, year=2022).splitlines()
 
-# data = []
-# with open("testInput", "r") as file:
-#     for line in file:
-#         data.append(line.strip())
+testData = []
+with open("testInput", "r") as file:
+    for line in file:
+        testData.append(line.strip())
 
-beaconNotPresent = set()
-beacons = set()
+def processSensorBeaconData(data):
+    beacons = set()
+    sbdata = []
+    for line in data:
+        matches = [int(n) for n in re.findall(r"-?\d+", line)]
+        sensor = [matches[0], matches[1]]
+        beacon = [matches[2], matches[3]]
+        beacons.add((matches[2], matches[3]))
+        d = manhattan(sensor, beacon)
+        sbdata.append([sensor, beacon, d])
 
-sbdata = []
-for line in data:
-    matches = [int(n) for n in re.findall(r"-?\d+", line)]
-    sensor = [matches[0], matches[1]]
-    beacon = [matches[2], matches[3]]
-    beacons.add((matches[2], matches[3]))
-    d = manhattan(sensor, beacon)
-    sbdata.append([sensor, beacon, d])
-    # for x, y in ringscan(matches[0], matches[1], 0, d, metric=manhattan):
-        # beaconNotPresent.add((x,y))
-# pprint(sbdata)
-
-leftMostReach = min([x[0][0] - x[2] for x in sbdata])
-# print(leftMostReach)
-rightMostReach = max([x[0][0] + x[2] for x in sbdata])
-# print(rightMostReach)
+    leftMostReach = min([x[0][0] - x[2] for x in sbdata])
+    rightMostReach = max([x[0][0] + x[2] for x in sbdata])
+    return beacons,sbdata,leftMostReach,rightMostReach
 
 
-# beaconNotPresent -= beacons
-# count = 0
-# y = 10
-# for point in beaconNotPresent:
-#     if point[1] == y:
-#         # print(point)
-#         count += 1
-# print(count)
+def countNoBeacons(beacons, sbdata, leftMostReach, rightMostReach, y):
+    beaconNotPresent = set()
+    for x in range(leftMostReach, rightMostReach+1, 1):
+        point = [x, y]
+        for s in sbdata:
+            if manhattan(point, s[0]) <= s[2]:
+                beaconNotPresent.add((point[0], point[1]))
+                break
+    return len(beaconNotPresent-beacons)
 
-# -- way 2
 
-# y = 10
-y=2000000
-# count = 0
-newset = set()
+def solve(data, y):
+    beacons, sbdata, leftMostReach, rightMostReach = processSensorBeaconData(data)
+    print(countNoBeacons(beacons, sbdata, leftMostReach, rightMostReach, y))
 
-for x in range(leftMostReach, rightMostReach+1, 1):
-    point = [x, y]
-    for s in sbdata:
-        if manhattan(point, s[0]) <= s[2]:
-            # print(point)
-            newset.add((point[0], point[1]))
-            # count +=1
-            break
-print(len(newset-beacons))
+solve(data, 2000000)
+solve(testData, 10)
+#4424278
