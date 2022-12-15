@@ -26,7 +26,9 @@ def processSensorBeaconData(data):
 
     leftMostReach = min([x[0][0] - x[2] for x in sbdata])
     rightMostReach = max([x[0][0] + x[2] for x in sbdata])
-    return beacons,sbdata,leftMostReach,rightMostReach
+    topMostReach = min([x[0][1] - x[2] for x in sbdata])
+    bottomMostReach = max([x[0][1] + x[2] for x in sbdata])
+    return beacons,sbdata,leftMostReach,rightMostReach,topMostReach,bottomMostReach
 
 
 def countNoBeacons(beacons, sbdata, leftMostReach, rightMostReach, y):
@@ -41,7 +43,7 @@ def countNoBeacons(beacons, sbdata, leftMostReach, rightMostReach, y):
 
 
 def solve(data, y):
-    beacons, sbdata, leftMostReach, rightMostReach = processSensorBeaconData(data)
+    beacons, sbdata, leftMostReach, rightMostReach, _, _ = processSensorBeaconData(data)
     print(countNoBeacons(beacons, sbdata, leftMostReach, rightMostReach, y))
 
 solve(data, 2000000)
