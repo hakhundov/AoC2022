@@ -14,22 +14,18 @@ with open("testInput", "r") as file:
 def moveLeft(shape: list):
     for point in shape:
         point[1] -= 1
-    return shape
 
 def moveRight(shape: list):
     for point in shape:
         point[1] += 1
-    return shape
 
 def moveDown(shape: list):
     for point in shape:
         point[0] -= 1
-    return shape
 
 def moveUp(shape: list):
     for point in shape:
         point[0] += 1
-    return shape
 
 def adjustPosition(shape: list, topPosition: int, k: int):
     for point in shape:
@@ -48,8 +44,6 @@ def checkCollision(shape: list, fullPicture):
     return False
 
 
-peakPositions = [[0] * 7]
-
 shapes = [
     [[0,2],[0,3],[0,4],[0,5]],
     [[0,3],[1,2],[1,3],[1,4],[2,3]],
@@ -65,29 +59,29 @@ fallingShape = list(shapes[currentShape])
 adjustPosition(fallingShape, top, 3)
 stoppedRocks = 0
 
-windPattern = testData[0]
+windPattern = data[0]
 # windPattern = testData[0]
 currentWind = 0
 debug = False
 
 while True:
     dir = windPattern[currentWind]
-    if (debug):
-        print("current direction: ", dir)
+    # if (debug):
+        # print("current direction: ", dir)
     currentWind = (currentWind + 1) % len(windPattern)
     match dir:
         case '>':
             moveRight(fallingShape)
             if checkCollision(fallingShape, fullPicture):
                 moveLeft(fallingShape)
-            if (debug):
-                print(" > " , fallingShape)
+            # if (debug):
+                # print(" > " , fallingShape)
         case '<':
             moveLeft(fallingShape)
             if checkCollision(fallingShape, fullPicture):
                 moveRight(fallingShape)
-            if (debug):
-                print(" < " , fallingShape)
+            # if (debug):
+                # print(" < " , fallingShape)
 
     moveDown(fallingShape)
     if checkCollision(fallingShape, fullPicture):
@@ -95,21 +89,21 @@ while True:
         top = max( max([x[0] for x in fallingShape]), top )
         for point in fallingShape:
             fullPicture.add((point[0], point[1]))
-            if (debug):
-                print("adding to full picture:", (point[0], point[1]) )
+            # if (debug):
+                # print("adding to full picture:", (point[0], point[1]) )
         stoppedRocks += 1
-        if (debug):
-            print("stopped rock " , stoppedRocks, " max height: ", top)
+        # if (debug):
+            # print("stopped rock " , stoppedRocks, " max height: ", top)
         
         currentShape = (currentShape + 1) % 5
         fallingShape = copy.deepcopy(shapes[currentShape])
         adjustPosition(fallingShape, top, 4)
-        if (debug):
-            print(" top is " , top)
-            print("adjusted shape is ", fallingShape)
+        # if (debug):
+            # print(" top is " , top)
+            # print("adjusted shape is ", fallingShape)
         if stoppedRocks == 2022:
             print(top+1)
             break
-    else:
-        if (debug):
-            print(" just down " , fallingShape)
+    # else:
+        # if (debug):
+            # print(" just down " , fallingShape)
