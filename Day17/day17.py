@@ -64,12 +64,7 @@ top = 0
 fallingShape = list(shapes[currentShape])
 adjustPosition(fallingShape, top, 3)
 stoppedRocks = 0
-# print(fallingShape)
 
-run = 0
-# for dir in testData[0]:
-# print(testData)
-# print(data)
 windPattern = testData[0]
 # windPattern = testData[0]
 currentWind = 0
