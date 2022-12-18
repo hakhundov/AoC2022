@@ -55,7 +55,7 @@ shapes = [
 fullPicture = set()
 currentShape = 0
 top = 0
-fallingShape = list(shapes[currentShape])
+fallingShape = copy.deepcopy(shapes[currentShape])
 adjustPosition(fallingShape, top, 3)
 stoppedRocks = 0
 
