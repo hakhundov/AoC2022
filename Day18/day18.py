@@ -22,10 +22,8 @@ exposedEdges = 0
 for cube in cubes:
     for neighbor in neighbors(cube[0], cube[1], cube[2]):
         if neighbor not in cubes:
-            print(neighbor)
             exposedEdges += 1
-        else:
-            print (neighbor)
+
 print(exposedEdges)
 
 
